@@ -9,7 +9,7 @@ import numpy as np
 import struct 
 import zlib
 
-server_address = ('192.168.1.168', 5001)
+server_address = ('192.168.43.168', 5001)
 
 pygame.init()
 j = pygame.joystick.Joystick(0)
@@ -68,7 +68,7 @@ def get():
 
 def recv():
     sock2=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    sock2.connect(('192.168.1.167',5002))
+    sock2.connect(('192.168.43.167',5002))
     while True:
         sock2.send(get())
         time.sleep(.01)
