@@ -66,14 +66,15 @@ def get():
     data = pickle.dumps(s)
     return data
 
-def recv():
+def send():
     sock2=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     sock2.connect(('192.168.43.167',5002))
     while True:
         sock2.send(get())
         time.sleep(.01)
+    sock2.close()
 
-def send():
+def recv():
     sock1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock1.bind(server_address)
     sock1.listen(5)
@@ -104,6 +105,7 @@ def send():
         
         cv2.imshow('ImageWindow',frame1)
         cv2.waitKey(1)
+    sock1.close()
 
 sending = threading.Thread(target=send)
 receiving = threading.Thread(target=recv)
